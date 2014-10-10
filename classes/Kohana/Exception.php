@@ -1,6 +1,5 @@
 <?php
 namespace Kohana;
- defined('SYSPATH') OR die('No direct script access.');
 
 class Exception extends Kohana\Exception{
 
@@ -19,7 +18,7 @@ class Exception extends Kohana\Exception{
 	{
 		try
 		{
-			\Registry::getDebugBar()['exceptions']->addException($e);
+			\Registry::instance()->DebugBar['exceptions']->addException($e);
 			// Get the exception information
 			$class   = get_class($e);
 			$code    = $e->getCode();
@@ -105,7 +104,7 @@ class Exception extends Kohana\Exception{
                 #TODO fix bug if error 500 Request::current() is null
 				if(\Request::current() and \Request::current()->is_ajax())
 				{
-					\Registry::getDebugBar()->sendDataInHeaders(true,'phpdebugbar',6121600);
+					\Registry::instance()->DebugBar->sendDataInHeaders(true,'phpdebugbar',6121600);
 				}
 				else
 				{
@@ -127,10 +126,11 @@ class Exception extends Kohana\Exception{
 			$response = \Response::factory();
 			$response->status(500);
 			$response->headers('Content-Type', 'text/plain');
-			\Registry::getDebugBar()['exceptions']->addException($e);
-			if(\Request::current()->is_ajax())
+			\Registry::instance()->DebugBar['exceptions']->addException($e);
+			#TODO fix bug if error 500 Request::current() is null
+			if(\Request::current() and \Request::current()->is_ajax())
 			{
-				\Registry::getDebugBar()->sendDataInHeaders(true,'phpdebugbar',6121600);
+				\Registry::instance()->DebugBar->sendDataInHeaders(true,'phpdebugbar',6121600);
 			}
 			else
 			{

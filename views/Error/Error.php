@@ -1,8 +1,8 @@
 <?php defined('SYSPATH') OR die('No direct script access.') ?>
 <?php
 
-$bar = \Registry::getDebugBar();
-$debugBarRenderer = $bar->getJavascriptRenderer(\Kohana::$base_url.'application/vendor/maximebf/debugbar/src/DebugBar/Resources/');
+$bar = \Registry::instance()->DebugBar;
+$debugBarRenderer = $bar->getJavascriptRenderer(\Kohana::$base_url.'vendor/maximebf/debugbar/src/DebugBar/Resources/');
 
 
 
