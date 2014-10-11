@@ -33,7 +33,7 @@ class Connection extends \Database\ForOverridden\Connection
 		if(!$instance)
 			throw new \Database\Exception('\Database\Connection failed to open the DB connection.');
 
-		$debugBar = \Registry::getDebugBar();
+		$debugBar = \Registry::instance()->DebugBar;
 		$pdoRead  = new \DebugBar\DataCollector\PDO\TraceablePDO($instance);
 		$pdoWrite = new \DebugBar\DataCollector\PDO\TraceablePDO($instance);
 
@@ -41,8 +41,22 @@ class Connection extends \Database\ForOverridden\Connection
 		$pdoCollector->addConnection($pdoRead, 'read-db');
 		$pdoCollector->addConnection($pdoWrite, 'write-db');
 		$debugBar->addCollector($pdoCollector);
-		\Registry::setDebugBar($debugBar);
+		DebagBarToRegistry::setProperty('DebugBar',$debugBar);
+
 		return $instance;
 	}
 
 }
+
+class DebagBarToRegistry extends \Registry
+{
+	/**
+	 * @param string $name
+	 * @param string $value
+	 */
+	public static function setProperty($name, $value)
+	{
+		parent::setProperty($name, $value);
+	}
+}
+
