@@ -2,7 +2,7 @@
 <?php
 
 $bar = \Registry::instance()->DebugBar;
-$debugBarRenderer = $bar->getJavascriptRenderer(\Kohana::$base_url.'vendor/maximebf/debugbar/src/DebugBar/Resources/');
+$debugBarRenderer = $bar->getJavascriptRenderer(\Kohana::$base_url.'application/vendor/maximebf/debugbar/src/DebugBar/Resources/');
 
 
 
