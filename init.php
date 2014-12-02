@@ -6,27 +6,6 @@
  * Date: 04.09.14
  * Time: 17:32
  */
-
-/**
- * Class DebugBarToRegistry
- */
-class DebugBarToRegistry extends \Registry
-{
-	/**
-	 * @param string $name
-	 * @param string $value
-	 */
-	public static function setProperty($name, $value)
-	{
-		parent::setProperty($name, $value);
-	}
-}
-
-
-
-\DebugBarToRegistry::setProperty('DebugBar',new DebugBar\StandardDebugBar());
-//\Registry::instance()->DebugBar->addCollector(new \DebugBar\DataCollector\DumpCollector());
-
 /**
  * @param $var
  * @param string $tab
