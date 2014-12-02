@@ -33,5 +33,5 @@ class DebugBarToRegistry extends \Registry
  */
 function var_echo($var, $tab = 'default')
 {
-	\Registry::instance()->DebugBar['messages']->addMessage($var,$tab);
+	\DebugBar::instance()->messages->addMessage($var,$tab);
 }

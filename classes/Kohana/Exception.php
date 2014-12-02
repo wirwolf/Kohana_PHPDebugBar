@@ -18,7 +18,7 @@ class Exception extends Kohana\Exception{
 	{
 		try
 		{
-			\Registry::instance()->DebugBar['exceptions']->addException($e);
+			\DebugBar::instance()->exceptions->addException($e);
 			// Get the exception information
 			$class   = get_class($e);
 			$code    = $e->getCode();
@@ -126,11 +126,11 @@ class Exception extends Kohana\Exception{
 			$response = \Response::factory();
 			$response->status(500);
 			$response->headers('Content-Type', 'text/plain');
-			\Registry::instance()->DebugBar['exceptions']->addException($e);
+			\DebugBar::instance()->exceptions->addException($e);
 			#TODO fix bug if error 500 Request::current() is null
 			if(\Request::current() and \Request::current()->is_ajax())
 			{
-				\Registry::instance()->DebugBar->sendDataInHeaders(true,'phpdebugbar',6121600);
+				\DebugBar::instance()->sendDataInHeaders(true,'phpdebugbar',6121600);
 			}
 			else
 			{
