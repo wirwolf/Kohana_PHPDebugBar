@@ -14,7 +14,9 @@ use DebugBar\StandardDebugBar;
  * @property \DebugBar\DataCollector\RequestDataCollector $request
  * @property \DebugBar\DataCollector\MemoryCollector $memory
  * @property \DebugBar\DataCollector\ExceptionsCollector $exceptions
+ * @property \DebugBar\DataCollector\TimeDataCollector $time
  */
+
 class DebugBar extends StandardDebugBar{
 
 	/**
@@ -41,7 +43,6 @@ class DebugBar extends StandardDebugBar{
 	{
 		return $this->collectors[$name];
 	}
-
 
 
 } 
