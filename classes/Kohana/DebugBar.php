@@ -15,6 +15,7 @@ use DebugBar\StandardDebugBar;
  * @property \DebugBar\DataCollector\MemoryCollector $memory
  * @property \DebugBar\DataCollector\ExceptionsCollector $exceptions
  * @property \DebugBar\DataCollector\TimeDataCollector $time
+ * @property \DebugBar\Bridge\CacheCacheCollector $cache
  */
 
 class DebugBar extends StandardDebugBar{
