@@ -104,7 +104,7 @@ class Exception extends Kohana\Exception{
                 #TODO fix bug if error 500 Request::current() is null
 				if(\Request::current() and \Request::current()->is_ajax())
 				{
-					\Registry::instance()->DebugBar->sendDataInHeaders(true,'phpdebugbar',6121600);
+					\DebugBar::instance()->sendDataInHeaders(true,'phpdebugbar',6121600);
 				}
 				else
 				{
