@@ -35,6 +35,23 @@ class Command extends \Database\ForOverridden\Command
 		else
 			$par='';
 
+		/*Cache system*/
+
+		if($this->_connection->queryCachingCount>0 && $method!==''
+			&& $this->_connection->queryCachingDuration>0
+			&& $this->_connection->queryCacheID!==false
+			&& ($cache=\CacheManager::get('sql'))!==null)
+		{
+			$this->_connection->queryCachingCount--;
+			$cacheKey='dbquery'.$this->_connection->connectionString.':'.$this->_connection->username;
+			$cacheKey.=':'.$this->getText().':'.serialize(array_merge($this->_paramLog,$params));
+			if(($result=$cache->get($cacheKey))!==false)
+			{
+				\Kohana::$log->add(\Log::CRITICAL,'Query result found in cache');
+				return $result[0];
+			}
+		}
+
 		try
 		{
 			$this->prepare();
